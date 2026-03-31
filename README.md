@@ -1,11 +1,6 @@
 # Micro RAG API
 
-> A lightweight, production-ready RAG backend for SMEs to chat with their PDFs.
-
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)](https://fastapi.tiangolo.com/)
-[![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker)](https://www.docker.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+A lightweight, production-ready RAG backend for SMEs to chat with their PDFs.
 
 Micro RAG API lets teams upload PDF documents, index them into a local vector database, and query them through a clean REST API powered by retrieval-augmented generation.
 
@@ -19,7 +14,7 @@ Micro RAG API lets teams upload PDF documents, index them into a local vector da
 ## Tech Stack
 
 - Python 3.11+
-- FastAPI + Uvicorn (fully **async** — non-blocking I/O throughout)
+- FastAPI + Uvicorn
 - ChromaDB (persistent local vector store)
 - Google Gemini API (`google-genai`) for embeddings and generation
 - LangChain text splitters (`RecursiveCharacterTextSplitter`)
@@ -41,57 +36,14 @@ mini-rag/
 │   └── services/
 │       ├── pdf_service.py
 │       ├── chunking_service.py
-│       ├── vector_store.py       # async Gemini embeds + async ChromaDB
-│       └── llm_service.py        # async Gemini generation
-├── chroma_db/                    # local persistent vectors (gitignored)
-├── ui.py                         # optional Streamlit interface
-├── Dockerfile
-├── docker-compose.yml
+│       ├── vector_store.py
+│       └── llm_service.py
+├── chroma_db/            # local persistent vectors (ignored by git)
+├── ui.py                 # optional Streamlit interface
 ├── .env.example
 ├── .gitignore
 └── requirements.txt
 ```
-
-## Deploy in 1 click with Docker
-
-The fastest way to get the API running — no Python installation required.
-
-### Prerequisites
-
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows/macOS/Linux)
-
-### Start
-
-```bash
-# Copy env template and set your API key
-cp .env.example .env
-# Edit .env and set GOOGLE_API_KEY
-
-# Build and start
-docker compose up --build
-```
-
-That is it. The API is available at `http://localhost:8000`.
-
-ChromaDB is persisted in a named volume (`chroma_data`) that survives container restarts.
-
-### Stop
-
-```bash
-docker compose down
-```
-
-### Deploy to a VPS (DigitalOcean, Hetzner, etc.)
-
-```bash
-# On your $5/month VPS:
-sudo apt-get install -y docker.io docker-compose-plugin
-git clone https://github.com/<your-username>/mini-rag.git && cd mini-rag
-echo "GOOGLE_API_KEY=your_real_key" >> .env
-sudo docker compose up -d --build
-```
-
----
 
 ## Local Setup
 
