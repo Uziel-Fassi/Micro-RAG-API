@@ -164,6 +164,11 @@ streamlit run ui.py
 - Keep API keys in environment variables only.
 - `chroma_db/` can grow large; it is intentionally excluded from source control.
 
-## License
+## Author
 
-Use your preferred license (MIT recommended for open-source visibility).
+**Uziel Fassi**  
+Computer Science Student
+
+GitHub: https://github.com/Uziel-Fassi  
+
+LinkedIn: https://www.linkedin.com/in/uziel-fassi-08840a287/
