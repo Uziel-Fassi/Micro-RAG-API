@@ -11,6 +11,12 @@ Micro RAG API lets teams upload PDF documents, index them into a local vector da
 - Clear, modular architecture for easy maintenance and scaling
 - Local ChromaDB persistence for simple deployment
 
+### 📸 Visual Showcase
+
+<div align="center">
+  <img src="./docs/images/micro-rag-working.gif" alt="Micro RAG in Action" width="100%">
+</div>
+
 ## Tech Stack
 
 - Python 3.11+
@@ -164,6 +170,12 @@ streamlit run ui.py
 - Keep API keys in environment variables only.
 - `chroma_db/` can grow large; it is intentionally excluded from source control.
 
-## License
+## 👨‍💻 Author & Contact
 
-Use your preferred license (MIT recommended for open-source visibility).
+**Uziel Fassi** *Computer Science Undergraduate & Full-Stack / AI Engineer*
+
+Are you interested in deploying a custom AI solution for your institution, or looking to discuss software architecture? Let's connect!
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/uziel-fassi-08840a287/) 
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Site-black?style=for-the-badge&logo=framer&logoColor=white)](https://myportfoliouzielf.framer.website)
+[![GitHub](https://img.shields.io/badge/GitHub-View%20Profile-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Uziel-Fassi)
