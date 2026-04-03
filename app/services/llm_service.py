@@ -64,8 +64,22 @@ async def generate_answer(question: str, context_chunks: list[str]) -> str:
             ) from exc
         raise HTTPException(status_code=502, detail=f"LLM provider error: {message}") from exc
     except Exception as exc:
+        message = str(exc)
         logger.exception("LLM API request failed")
-        raise HTTPException(status_code=502, detail="LLM API call failed. Check GOOGLE_API_KEY") from exc
+        if "429" in message or "RESOURCE_EXHAUSTED" in message:
+            raise HTTPException(
+                status_code=429,
+                detail=(
+                    "Gemini rate limit reached. Wait a bit and retry "
+                    "(free tier for gemini-2.5-flash is very limited)."
+                ),
+            ) from exc
+        if "401" in message or "403" in message or "PERMISSION_DENIED" in message:
+            raise HTTPException(
+                status_code=403,
+                detail="Gemini authentication error. Verify GOOGLE_API_KEY.",
+            ) from exc
+        raise HTTPException(status_code=502, detail=f"LLM provider error: {message}") from exc
 
     answer = response.text or ""
 

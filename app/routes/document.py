@@ -47,7 +47,7 @@ async def upload_document(file: UploadFile = File(...)) -> UploadResponse:
 
 @router.post("/query", response_model=QueryResponse)
 async def query_document(payload: QueryRequest) -> QueryResponse:
-    retrieved_chunks = await query_chunks(query=payload.query, top_k=3)
+    retrieved_chunks = await query_chunks(query=payload.query, top_k=3, document_id=payload.document_id)
 
     answer = await generate_answer(question=payload.query, context_chunks=retrieved_chunks)
 

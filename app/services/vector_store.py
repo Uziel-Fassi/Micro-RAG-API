@@ -94,12 +94,19 @@ async def add_chunks(chunks: list[str], filename: str) -> str:
     return document_id
 
 
-async def query_chunks(query: str, top_k: int = 3) -> list[str]:
+async def query_chunks(query: str, top_k: int = 3, document_id: str | None = None) -> list[str]:
     vector = await _embed_query(query)
     collection = _get_collection()
 
     try:
-        result = await asyncio.to_thread(collection.query, query_embeddings=[vector], n_results=top_k)
+        query_kwargs: dict[str, Any] = {
+            "query_embeddings": [vector],
+            "n_results": top_k,
+        }
+        if document_id:
+            query_kwargs["where"] = {"document_id": document_id}
+
+        result = await asyncio.to_thread(collection.query, **query_kwargs)
     except Exception as exc:
         logger.exception("Chroma query failed")
         raise HTTPException(status_code=500, detail="Vector DB query failed") from exc

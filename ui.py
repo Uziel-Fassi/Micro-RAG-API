@@ -179,7 +179,10 @@ if prompt := st.chat_input("Ask something about your document…"):
             try:
                 resp = requests.post(
                     f"{API_BASE}/query",
-                    json={"query": prompt},
+                    json={
+                        "query": prompt,
+                        "document_id": st.session_state.doc_info.get("document_id"),
+                    },
                     timeout=60,
                 )
                 if resp.status_code == 200:
