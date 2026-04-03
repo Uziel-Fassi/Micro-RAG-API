@@ -14,7 +14,7 @@ Micro RAG API lets teams upload PDF documents, index them into a local vector da
 ### 📸 Visual Showcase
 
 <div align="center">
-  <img src="./docs/images/micro-rag-working.gif" alt="Micro RAG in Action" width="100%">
+  <img src="./docs/micro-rag-working.gif" alt="Micro RAG in Action" width="100%">
 </div>
 
 ## Tech Stack
